@@ -10,10 +10,10 @@ public class FlightController : MonoBehaviour
 
     void Update() 
     {
-        // DOĞRU ileri hareket
+        
         transform.Translate(Vector3.forward * Time.deltaTime * speed);
 
-        // Hızlan / yavaşla
+       
         if(Input.GetKey(KeyCode.Space)){
             if(speed < maxSpeed){
                 speed += 50f * Time.deltaTime;
@@ -25,7 +25,7 @@ public class FlightController : MonoBehaviour
             }
         }
 
-        // ROLL (Q / E)
+        
         if(Input.GetKey(KeyCode.Q)){
             transform.Rotate(Vector3.forward * rotspeed1 * Time.deltaTime);
         }
@@ -33,7 +33,7 @@ public class FlightController : MonoBehaviour
             transform.Rotate(Vector3.forward * -rotspeed1 * Time.deltaTime);
         }
 
-        // PITCH (W / S)
+        
         if(Input.GetKey(KeyCode.W)){
             transform.Rotate(Vector3.right * -rotspeed2 * Time.deltaTime);
         }
@@ -41,7 +41,7 @@ public class FlightController : MonoBehaviour
             transform.Rotate(Vector3.right * rotspeed2 * Time.deltaTime);
         }
 
-        // YAW (A / D)
+       
         if(Input.GetKey(KeyCode.A)){
             transform.Rotate(Vector3.up * -rotspeed2 * Time.deltaTime);
         }
