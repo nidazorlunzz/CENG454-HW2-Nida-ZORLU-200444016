@@ -6,34 +6,39 @@ public class FlightExamManager : MonoBehaviour
     [SerializeField] private TMP_Text statusText;
 
     private bool hasTakenOff = false;
-    private bool inDangerZone = false;
+    private bool enteredDanger = false;
     private bool threatCleared = false;
 
-    
-    public void EnterDangerZone()
-    {
-        inDangerZone = true;
-        statusText.text = "Entered a Dangerous Zone!";
-    }
-
-    
-    public void ExitDangerZone()
-    {
-        inDangerZone = false;
-        threatCleared = true;
-        statusText.text = "Safe Zone";
-    }
-
-    
     public void OnTakeoff()
     {
         hasTakenOff = true;
-        statusText.text = "Takeoff Successful";
+        statusText.text = "Takeoff OK";
     }
 
-  
-    public void OnMissileHit()
+    public void EnterDangerZone()
     {
-        statusText.text = "You got hit!";
+        enteredDanger = true;
+        statusText.text = "Entered Dangerous Zone!";
+    }
+
+    public void ExitDangerZone()
+    {
+        if (enteredDanger)
+        {
+            threatCleared = true;
+            statusText.text = "Escaped Danger Zone";
+        }
+    }
+
+    public void OnLanding()
+    {
+        if (hasTakenOff && threatCleared)
+        {
+            statusText.text = "MISSION COMPLETE";
+        }
+        else
+        {
+            statusText.text = "Mission Failed (Wrong Order)";
+        }
     }
 }
