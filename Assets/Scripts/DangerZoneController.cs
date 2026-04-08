@@ -10,10 +10,11 @@ public class DangerZoneController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log("TRIGGER WORKED");
+
         if (other.CompareTag("Player"))
         {
             examManager.EnterDangerZone();
-
             countdown = StartCoroutine(StartCountdown());
         }
     }
